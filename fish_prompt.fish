@@ -235,7 +235,7 @@ function d -d 'List directory history, jump to directory in list with d <number>
       set last_item '-'(expr $num_items - 1)
     end
     echo -en $budspencer_cursors[2]
-    set input_length (expr length (expr $num_items - 1))
+    set input_length (string length (expr $num_items - 1))
     read -p 'echo -n (set_color -b $budspencer_colors[2] $budspencer_colors[5])" ♻ Goto [e|0"$last_item"] "(set_color -b normal $budspencer_colors[2])" "(set_color $budspencer_colors[5])' -n $input_length -l dir_num
     switch $dir_num
       case (seq 0 (expr $num_items - 1))
@@ -312,7 +312,7 @@ function c -d 'List command history, load command from prompt with c <prompt num
     set last_item '-'(expr $num_items - 1)
   end
   echo -en $budspencer_cursors[4]
-  set input_length (expr length (expr $num_items - 1))
+  set input_length (string length (expr $num_items - 1))
   read -p 'echo -n (set_color -b $budspencer_colors[2] $budspencer_colors[9])" ↩ Exec [e|0"$last_item"] "(set_color -b normal $budspencer_colors[2])" "(set_color $budspencer_colors[9])' -n $input_length -l cmd_num
   switch $cmd_num
     case (seq 0 (expr $num_items - 1))
@@ -395,7 +395,7 @@ function m -d 'List bookmarks, jump to directory in list with m <number>'
       set last_item '-'(expr $num_items - 1)
     end
     echo -en $budspencer_cursors[1]
-    set input_length (expr length (expr $num_items - 1))
+    set input_length (string length (expr $num_items - 1))
     read -p 'echo -n (set_color -b $budspencer_colors[2] $budspencer_colors[10])" ⌘ Goto [0"$last_item"] "(set_color -b normal $budspencer_colors[2])" "(set_color $budspencer_colors[10])' -n $input_length -l dir_num
     switch $dir_num
       case (seq 0 (expr $num_items - 1))
@@ -528,7 +528,7 @@ function s -d 'Create, delete or attach session'
       set last_item '-'(expr $num_items - 1)
     end
     echo -en $budspencer_cursors[3]
-    set input_length (expr length (expr $num_items - 1))
+    set input_length (string length (expr $num_items - 1))
     read -p 'echo -n (set_color -b $budspencer_colors[2] $budspencer_colors[8])" ✻ Attach [e|0"$last_item"] "(set_color -b normal $budspencer_colors[2])" "(set_color $budspencer_colors[8])' -n $input_length -l session_num
     set pcount (expr $pcount - 1)
     switch $session_num
@@ -846,7 +846,7 @@ set -g no_prompt_hist 'F'
 set -g symbols_style 'symbols'
 
 # Fix for WSL showing wrong command number at start
-if test (uname -r | /bin/grep [Mm]icrosoft)
+if test (uname -r | /usr/bin/grep [Mm]icrosoft)
   set -g pcount 0
 end
 
